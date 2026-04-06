@@ -44,6 +44,5 @@ public interface LdgoGoogleMapsApi {
             @Query("key") String key
     );
 
-//    @GET("geocode/json?key=AIzaSyBPOr1V_ffIyE9VXuVvmAzHJlEEx5mykU4")
-//    Call<GeoLocations> getDistanceBetweenLocations(@Query("latlng") String longitudesLatitudes);
+
 }

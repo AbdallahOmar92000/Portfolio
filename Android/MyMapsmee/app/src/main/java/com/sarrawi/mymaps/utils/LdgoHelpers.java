@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 
 public class LdgoHelpers {
     final static int MAX_WIDTH = 400;
-    final static String API_KEY = "AIzaSyCJCOfp00o1_KKwcx2ndAm1_uOb_fa_lKc";
     final static String BASE_URL = "https://maps.googleapis.com/maps/api/place/photo";
     String jwt;
     private SharedPreferences sp;
