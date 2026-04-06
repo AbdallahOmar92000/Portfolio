@@ -1,0 +1,419 @@
+
+
+
+
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notifications</title>
+  <link href="{% static 'style.css' %}" rel="stylesheet" />
+  <style>
+  
+  #notification-container {
+  max-height: 300px;
+  overflow-y: auto;   /* ????? ???? */
+  overflow-x: auto;   /* ????? ???? ???? ??? dropdown ??? */
+  white-space: nowrap; /* ??? ?????? ?????? ??????? */
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: absolute;
+  width: 350px;      /* ??? ???? min-width ??? dropdown */
+  box-sizing: border-box;
+  padding: 10px;
+  z-index: 1000;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 350px;      /* ??? ??? ??????? */
+  overflow: hidden;  /* ??? ?? scroll ????? */
+  box-shadow: 0px 8px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+  font-size: 0.9rem;
+}
+.dropdown-item-parent a {
+  display: inline-block;
+  min-width: 300px; /* ???? ???????? ?????? ???? ??????? */
+}
+
+<!--
+    .dropdown-content {
+      display: none; /* ????? ??????? */
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 350px;
+      max-height: 250px; /* ?????? ???? ?? ???? scroll */
+      overflow-y: auto;
+      overflow-x: hidden;
+      box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      padding: 0;
+      margin-top: 8px;
+    }
+
+  
+  #notification-container {
+  max-height: 300px;
+  overflow-y: auto;
+  background: white;
+  position: absolute;
+  width: 320px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+-->
+
+.dropdown-item-parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #ddd;
+}
+
+    .profile-pic {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-left: 10px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .notification-badge {
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 50%;
+      font-weight: bold;
+      transition: 0.3s;
+      user-select: none;
+      display: inline-block;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .notification-badge:hover {
+      opacity: 0.75;
+    }
+
+
+    .dropdown-content.show {
+      display: block;
+    }
+
+
+
+
+
+    .dropdown-item-parent a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown-item-close {
+      cursor: pointer;
+      font-size: 1.4rem;
+      color: #888;
+      margin-left: 10px;
+      transition: color 0.3s;
+    }
+
+    .dropdown-item-close:hover {
+      color: rgb(180, 25, 25);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dropdown">
+    <span class="notification-badge" id="notification-badge">{{ notifications.count }}</span>
+    <div class="dropdown-content" id="notification-container">
+      {% for notification in notifications %}
+        <div class="dropdown-item-parent">
+          {% if notification.post %}
+            {% if notification.notification_type == 1 %}
+              <a href="{% url 'post-notification' notification.pk notification.post.pk %}">@{{ notification.from_user }} liked your post</a>
+            {% elif notification.notification_type == 2 %}
+              <a href="{% url 'post-notification' notification.pk notification.post.pk %}">@{{ notification.from_user }} commented on your post</a>
+            {% elif notification.notification_type == 3 %}
+              <a href="{% url 'post-notification' notification.pk notification.post.pk %}">@{{ notification.from_user }} disliked your post</a>
+            {% endif %}
+          {% elif notification.comment %}
+            {% if notification.notification_type == 1 %}
+              <a href="{% url 'post-notification' notification.pk notification.comment.post.pk %}">@{{ notification.from_user }} liked your comment</a>
+            {% elif notification.notification_type == 2 %}
+              <a href="{% url 'post-notification' notification.pk notification.comment.post.pk %}">@{{ notification.from_user }} replied to your comment</a>
+            {% elif notification.notification_type == 3 %}
+              <a href="{% url 'post-notification' notification.pk notification.comment.post.pk %}">@{{ notification.from_user }} disliked your comment</a>
+            {% endif %}
+          {% elif notification.thread %}
+            <a href="{% url 'thread-notification' notification.pk notification.thread.pk %}">@{{ notification.from_user }} sent you a message</a>
+          {% else %}
+            <a href="{% url 'follow-notification' notification.pk notification.from_user.profile.pk %}">@{{ notification.from_user }} has started following you</a>
+          {% endif %}
+          <img src="{{ notification.from_user.profile.picture.url }}" alt="Profile Picture" class="profile-pic" />
+          <span class="dropdown-item-close" onclick="removeNotification('{% url 'notification-delete' notification.pk %}', '{{ request.path }}')">&times;</span>
+        </div>
+      {% empty %}
+        <div class="dropdown-item-parent">
+          <span>No notifications</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script>
+    const badge = document.getElementById('notification-badge');
+    const container = document.getElementById('notification-container');
+
+    badge.addEventListener('click', () => {
+      container.classList.toggle('show');
+    });
+
+    // ????? ??????? ??? ????? ??????
+    document.addEventListener('click', (e) => {
+      if (!container.contains(e.target) && e.target !== badge) {
+        container.classList.remove('show');
+      }
+    });
+
+    // ???? ??? ???????
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // ?? ???? ??? ?????? ???? ??????
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+
+    function removeNotification(removeNotificationURL, redirectURL) {
+      const csrftoken = getCookie('csrftoken');
+
+      fetch(removeNotificationURL, {
+        method: "DELETE",
+        headers: {
+          "X-CSRFToken": csrftoken,
+        },
+      })
+        .then(response => {
+          if (response.ok) {
+            // ????? ?????? ?? ????? ????? ?????? ????? ??? ???? reload
+            window.location.replace(redirectURL);
+          } else {
+            alert('??? ???? ???? ??? ????.');
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          alert('??? ???? ???? ??? ????.');
+        });
+    }
+  </script>
+</body>
+
+</html>
+
+
+{% comment %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Notifications</title>
+	<link href="{% static 'style.css' %}" rel="stylesheet">
+	<style>
+		.profile-pic {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			margin-right: 10px;
+		}
+   .dropdown-item-parent a {
+  display: block;
+  max-width: 280px;
+  white-space: normal;     /* ???? ??? ???? ??? ???? ?????? */
+  word-wrap: break-word;    /* ???? ??????? ??? ???? ?????? ????? */
+}
+
+
+.dropdown-content {
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 350px;
+  box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  font-size: 0.9rem;
+  max-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  right: 0;  /* ??? ?????? ????? */
+  left: auto;
+}
+
+
+.dropdown-item-parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.dropdown-item-close {
+  cursor: pointer;
+}
+
+.d-none {
+  display: none;
+}
+</style>
+	</style>
+ 
+ 
+</head>
+
+<body>
+
+
+<div class="dropdown">
+	<span class="badge bg-primary notification-badge" onclick="showNotifications()">{{ notifications.count }}</span>
+	<div class="dropdown-content d-none" id="notification-container">
+		{% for notification in notifications %}
+			{% if notification.post %}
+				{% if notification.notification_type == 1 %}
+				<div class="dropdown-item-parent">
+					<a href="{% url 'post-notification' notification.pk notification.post.pk %}">@{{ notification.from_user }} liked your post</a>
+             <img src="{{ notification.from_user.profile.picture.url }}" alt="Profile Picture" class="profile-pic" />
+					<span class="dropdown-item-close" onclick="removeNotification('{% url 'notification-delete' notification.pk %}', '{{ request.path }}')">&times;</span>
+				</div>
+				{% elif notification.notification_type == 2 %}
+				<div class="dropdown-item-parent">
+					<a href="{% url 'post-notification' notification.pk notification.post.pk %}">@{{ notification.from_user }} commented on your post</a>
+             <img src="{{ notification.from_user.profile.picture.url }}" alt="Profile Picture" class="profile-pic" />
+					<span class="dropdown-item-close" onclick="removeNotification('{% url 'notification-delete' notification.pk %}', '{{ request.path }}')">&times;</span>
+				</div>
+				{% elif notification.notification_type == 3 %}
+				<div class="dropdown-item-parent">
+					<a href="{% url 'post-notification' notification.pk notification.post.pk %}">@{{ notification.from_user }} Disliked your post</a>
+             <img src="{{ notification.from_user.profile.picture.url }}" alt="Profile Picture" class="profile-pic" />
+					<span class="dropdown-item-close" onclick="removeNotification('{% url 'notification-delete' notification.pk %}', '{{ request.path }}')">&times;</span>
+				</div>
+				{% endif %}
+			{% elif notification.comment %}
+				{% if notification.notification_type == 1 %}
+				<div class="dropdown-item-parent">
+					<a href="{% url 'post-notification' notification.pk notification.comment.post.pk %}">@{{ notification.from_user }} liked your comment</a>
+             <img src="{{ notification.from_user.profile.picture.url }}" alt="Profile Picture" class="profile-pic" />
+					<span class="dropdown-item-close" onclick="removeNotification('{% url 'notification-delete' notification.pk %}', '{{ request.path }}')">&times;</span>
+				</div>
+				{% elif notification.notification_type == 2 %}
+				<div class="dropdown-item-parent">
+					<a href="{% url 'post-notification' notification.pk notification.comment.post.pk %}">@{{ notification.from_user }} replied to your comment</a>
+             <img src="{{ notification.from_user.profile.picture.url }}" alt="Profile Picture" class="profile-pic" />
+					<span class="dropdown-item-close" onclick="removeNotification('{% url 'notification-delete' notification.pk %}', '{{ request.path }}')">&times;</span>
+				</div>
+				{% elif notification.notification_type == 3 %}
+				<div class="dropdown-item-parent">
+					<a href="{% url 'post-notification' notification.pk notification.comment.post.pk %}">@{{ notification.from_user }} Disliked your comment</a>
+             <img src="{{ notification.from_user.profile.picture.url }}" alt="Profile Picture" class="profile-pic" />
+					<span class="dropdown-item-close" onclick="removeNotification('{% url 'notification-delete' notification.pk %}', '{{ request.path }}')">&times;</span>
+				</div>
+				{% endif %}
+        
+        {% elif notification.thread %}
+				<div class="dropdown-item-parent">
+					<a href="{% url 'thread-notification' notification.pk notification.thread.pk %}">@{{ notification.from_user }} sent you a message</a>
+             <img src="{{ notification.from_user.profile.picture.url }}" alt="Profile Picture" class="profile-pic" />
+					<span class="dropdown-item-close" onclick="removeNotification(`{% url 'notification-delete' notification.pk %}`, `{{ request.path }}`)">&times;</span>
+				</div>
+        
+			{% else %}
+			<div class="dropdown-item-parent">
+				<a href="{% url 'follow-notification' notification.pk notification.from_user.profile.pk %}">@{{ notification.from_user }} has started following you</a>
+        <img src="{{ notification.from_user.profile.picture.url }}" alt="Profile Picture" class="profile-pic" />
+				<span class="dropdown-item-close" onclick="removeNotification('{% url 'notification-delete' notification.pk %}', '{{ request.path }}')">&times;</span>
+			</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+</div>
+    <script>
+
+function removeNotification(removeNotificationURL, redirectURL) {
+  
+  const csrftoken = getCookie('csrftoken');
+
+  // ??????? fetch ?????? ??? DELETE
+  fetch(removeNotificationURL, {
+    method: "DELETE",  // ????? ??? ????? (DELETE)
+    headers: {
+      "X-CSRFToken": csrftoken,  // ????? CSRF token ?????
+    },
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log("Status:", response.status);
+        console.log("Response:", response.statusText);
+        // ?? ???? ???? ?????? ???? ?????? ???????? ??? ?????? ??????
+        window.location.replace(redirectURL);
+      } else {
+        // ?? ???? ???? ??? ?? ?????????? ??? ????? ???
+        alert('There was an error. Please try again.');
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert('There was an error. Please try again.');
+    });
+}
+
+ document.addEventListener('click', function(event) {
+    const container = document.getElementById('notification-container');
+    const badge = document.querySelector('.notification-badge');
+
+    if (!container.classList.contains('d-none') && // ??????? ??????
+        !container.contains(event.target) &&          // ????? ??? ???? ???????
+        event.target !== badge) {                      // ????? ??? ??? ?? ?????????
+      container.classList.add('d-none');              // ????? ???????
+    }
+  });
+</script>
+
+</body>
+
+</html>
+
+
+
+{% endcomment %}

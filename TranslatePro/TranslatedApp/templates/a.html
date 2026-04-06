@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>مترجم مجاني</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <style>
+        /* تنظيم الحقول بجانب بعض باستخدام Flex */
+        .languages-container {
+            display: flex;
+            justify-content: space-between; /* توزيع العناصر بشكل متساوي */
+            align-items: center; /* محاذاة العناصر عموديًا */
+        }
+
+        .languages-container .mb-3 {
+            flex: 1; /* إعطاء كل عنصر مساحة متساوية */
+            margin-right: 10px; /* تباعد بسيط بين العناصر */
+        }
+
+        .languages-container button {
+            margin-top: 27px; /* محاذاة الزر مع الحقول */
+        }
+
+        .translation-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .translation-container .translation-item {
+            flex: 1;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <!-- شريط العنوان والزر -->
+    <div class="bg-white shadow-sm py-2 px-3 mb-4 d-flex justify-content-between align-items-center">
+        <h4 class="m-0">مترجم</h4>
+        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#historyModal">
+            السجل
+        </button>
+    </div>
+
+    <!-- محتوى الصفحة -->
+    <div class="container mt-5">
+        <h1 class="text-center">مترجم مجاني لجميع اللغات</h1>
+        <form method="post" class="p-4 bg-white rounded shadow-sm">
+            {% csrf_token %}
+
+            <!-- حاوية اللغات وزر التبديل -->
+            <div class="languages-container mb-3">
+                <!-- حقل اللغة المصدر -->
+                <div>
+                    <label for="source_language" class="form-label">اللغة المصدر:</label>
+                    {{ form.source_language }}
+                </div>
+
+                <!-- زر تبديل اللغة -->
+                <button type="button" class="btn btn-secondary" onclick="swapLanguages()">تبديل اللغة</button>
+
+                <!-- حقل اللغة الهدف -->
+                <div>
+                    <label for="target_language" class="form-label">اللغة الهدف:</label>
+                    {{ form.target_language }}
+                </div>
+            </div>
+
+            <!-- حقل النص المصدر -->
+            <!-- حقل النص المراد ترجمته والنص المترجم -->
+            <div class="translation-container">
+                <div class="translation-item mb-3">
+                    <label for="source_text" class="form-label">النص المراد ترجمته:</label>
+                    {{ form.source_text }}
+                </div>
+
+                <div class="translation-item mb-3">
+                    <label for="translated_text" class="form-label">النص المترجم:</label>
+                    {% if result %}
+                        <div class="alert alert-success">
+                            <span id="translatedText">{{ result }}</span>
+                            <button class="btn btn-outline-secondary mt-2" onclick="copyToClipboard()">نسخ النص</button>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-secondary">لم يتم الترجمة بعد</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- زر الترجمة -->
+            <button type="submit" class="btn btn-primary">ترجم</button>
+
+        </form>
+
+    <!-- Modal السجل -->
+    <div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="historyModalLabel">سجل الترجمات</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                </div>
+
+                <div class="modal-body">
+    {% if history %}
+        <ul class="list-group">
+            {% for item in history %}
+                <li class="list-group-item">
+
+                        <strong>من {{ item.source_language }} إلى {{ item.target_language }}</strong><br>
+
+<small>النص الأصلي:</small> 
+<p id="source-{{ forloop.counter }}">{{ item.source_text }}</p>
+
+<small>النص المترجم:</small> 
+<p id="text-{{ forloop.counter }}">{{ item.translated_text }}</p>
+
+<!-- زر نسخ الكلمة ومعناها -->
+<button class="btn btn-outline-secondary btn-sm" onclick="copyTextBoth({{ forloop.counter }})">
+    <i class="fa fa-copy"></i> نسخ
+</button>
+
+
+
+
+
+
+                    <!-- زر حذف -->
+                    <form method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="delete_index" value="{{ forloop.counter0 }}">
+                        <button class="btn btn-outline-danger btn-sm" type="submit">
+                            <i class="fa fa-trash"></i> حذف
+                        </button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">لا يوجد ترجمات سابقة.</p>
+     
+    {% endif %}
+</div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- سكربت Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- سكربت تبديل اللغة -->
+    <script>
+        function swapLanguages() {
+            const source = document.querySelector('[name="source_language"]');
+            const target = document.querySelector('[name="target_language"]');
+            const temp = source.value;
+            source.value = target.value;
+            target.value = temp;
+        }
+
+        // وظيفة النسخ إلى الحافظة
+        function copyToClipboard() {
+            const translatedText = document.querySelector('#translatedText').textContent.trim(); // استخراج النص فقط
+            navigator.clipboard.writeText(translatedText).then(function() {
+                alert("تم نسخ النص المترجم إلى الحافظة!");
+            }, function(err) {
+                console.error("فشل النسخ: ", err);
+            });
+        }
+
+        function copyText(id) {
+                const text = document.getElementById(id).innerText;
+                navigator.clipboard.writeText(text).then(function() {
+                alert("تم نسخ الترجمة: " + text);
+            });
+        }
+function copyTextBoth(counter) {
+        const source = document.getElementById('source-' + counter)?.innerText.trim();
+        const translated = document.getElementById('text-' + counter)?.innerText.trim();
+
+        if (source && translated) {
+            const combined = `الكلمة: ${source}\nالمعنى: ${translated}`;
+            navigator.clipboard.writeText(combined).then(() => {
+                alert("✅ تم نسخ الكلمة ومعناها:\n\n" + combined);
+            }).catch(err => {
+                console.error("❌ خطأ في النسخ:", err);
+            });
+        } else {
+            alert("❌ تعذر العثور على النص!");
+        }
+    }
+       
+</script>
+
+    </script>
+</body>
+</html>
+
+{% comment %} <script>
+    const translatedTextElement = document.querySelector('#translatedText');
+    const sourceTextElement = document.querySelector('[name="source_text"]');
+    const sourceLang = document.querySelector('[name="source_language"]');
+    const targetLang = document.querySelector('[name="target_language"]');
+
+    // عند تحميل الصفحة، إن كانت هناك ترجمة جديدة، أضفها إلى localStorage
+    if (translatedTextElement && sourceTextElement && sourceTextElement.value.trim() !== '') {
+        const newEntry = {
+            source_language: sourceLang.value,
+            target_language: targetLang.value,
+            source_text: sourceTextElement.value.trim(),
+            translated_text: translatedTextElement.textContent.trim()
+        };
+
+        const history = JSON.parse(localStorage.getItem('translationHistory') || '[]');
+        history.unshift(newEntry); // أضف في الأعلى
+        localStorage.setItem('translationHistory', JSON.stringify(history.slice(0, 50))); // احتفظ بـ 50 ترجمة فقط
+    }
+
+    // عرض السجل من localStorage
+    document.addEventListener('DOMContentLoaded', renderHistory);
+    function renderHistory() {
+        const container = document.getElementById('historyList');
+        if (!container) return;
+
+        const history = JSON.parse(localStorage.getItem('translationHistory') || '[]');
+        if (history.length === 0) {
+            container.innerHTML = `<p class="text-muted">لا يوجد ترجمات محفوظة في هذا المتصفح.</p>`;
+            return;
+        }
+
+        let html = '<ul class="list-group">';
+        history.forEach((item, index) => {
+            html += `
+                <li class="list-group-item">
+                    <strong>من ${item.source_language} إلى ${item.target_language}</strong><br>
+                    <small>النص الأصلي:</small> 
+                    <p id="source-${index}">${item.source_text}</p>
+                    <small>النص المترجم:</small> 
+                    <p id="text-${index}">${item.translated_text}</p>
+
+                    <button class="btn btn-outline-secondary btn-sm" onclick="copyTextBoth(${index})">
+                        <i class="fa fa-copy"></i> نسخ
+                    </button>
+
+                    <button class="btn btn-outline-danger btn-sm" onclick="deleteHistoryItem(${index})">
+                        <i class="fa fa-trash"></i> حذف
+                    </button>
+                </li>
+            `;
+        });
+        html += '</ul>';
+        container.innerHTML = html;
+    }
+
+    // حذف عنصر من السجل
+    function deleteHistoryItem(index) {
+        const history = JSON.parse(localStorage.getItem('translationHistory') || '[]');
+        history.splice(index, 1);
+        localStorage.setItem('translationHistory', JSON.stringify(history));
+        renderHistory();
+    }
+
+    // نسخ النص الأصلي والمترجم
+    function copyTextBoth(counter) {
+        const source = document.getElementById('source-' + counter)?.innerText.trim();
+        const translated = document.getElementById('text-' + counter)?.innerText.trim();
+
+        if (source && translated) {
+            const combined = `الكلمة: ${source}\nالمعنى: ${translated}`;
+            navigator.clipboard.writeText(combined).then(() => {
+                alert("✅ تم نسخ الكلمة ومعناها:\n\n" + combined);
+            }).catch(err => {
+                console.error("❌ خطأ في النسخ:", err);
+            });
+        } else {
+            alert("❌ تعذر العثور على النص!");
+        }
+    }
+</script>
+ {% endcomment %}
