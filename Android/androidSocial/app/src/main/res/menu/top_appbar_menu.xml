@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Explore -->
+    <item
+        android:id="@+id/nav_explore"
+        android:icon="@drawable/ic_explore"
+        android:title="Explore"
+        app:showAsAction="always" />
+
+    <!-- Suggestions -->
+    <item
+        android:id="@+id/nav_suggestions"
+        android:icon="@drawable/ic_group"
+        android:title="Suggestions"
+        app:showAsAction="always" />
+
+    <!-- Notifications -->
+    <item
+        android:id="@+id/action_notifications"
+        android:icon="@drawable/ic_notifications"
+        android:title="Notifications"
+        app:showAsAction="always" />
+
+    <!-- Inbox -->
+    <item
+        android:id="@+id/action_messages"
+        android:icon="@drawable/ic_inbox"
+        android:title="Inbox"
+        app:showAsAction="always" />
+
+    <!-- Account (dropdown menu) -->
+    <item
+        android:id="@+id/action_account"
+        android:icon="@drawable/ic_user"
+        android:title="Account"
+        app:showAsAction="always" />
+
+    <!-- زر البحث -->
+    <item
+        android:id="@+id/action_search"
+        android:title="Search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+<!--            app:showAsAction="ifRoom|collapseActionView"-->
+</menu>
+

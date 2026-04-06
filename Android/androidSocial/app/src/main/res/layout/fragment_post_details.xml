@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- زر الرجوع -->
+<!--        <Button-->
+<!--            android:id="@+id/btnBack"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Back To Feed" />-->
+
+        <!-- بيانات البوست -->
+        <LinearLayout
+            android:id="@+id/aa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="12dp">
+
+            <ImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_user"
+                android:layout_marginRight="8dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@username"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/holo_blue_dark" />
+
+                <TextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2 hours ago" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- نص البوست -->
+        <TextView
+            android:id="@+id/txtBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Post body goes here..."
+            android:textSize="16sp"
+            android:paddingTop="12dp" />
+
+        <!-- صورة أو صور البوست -->
+<!--        <ImageView-->
+<!--            android:id="@+id/imgPost"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_marginTop="8dp" />-->
+
+        <LinearLayout
+            android:id="@+id/imagesContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_marginTop="8dp"
+            android:gravity="start"
+            />
+
+        <!-- لايك وديسلايك -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="12dp">
+
+            <ImageButton
+                android:id="@+id/btnLike"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Like"
+                android:src="@drawable/ic_like"
+                 />
+            <TextView
+                android:id="@+id/txtlike_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginTop="8dp"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/btndis_like"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Comment"
+                android:src="@drawable/ic_dis_like"
+                 />
+
+            <TextView
+                android:id="@+id/txtdislike_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginTop="8dp"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <!-- إضافة تعليق -->
+        <EditText
+            android:id="@+id/edtComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Comment..."
+            android:minHeight="80dp"
+            android:gravity="top"
+            android:background="@android:drawable/editbox_background" />
+
+        <Button
+            android:id="@+id/btnSelectImage"
+            android:text="Upload Image"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imagePreview"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:visibility="gone" />-->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imagePreview"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="8dp"
+                android:visibility="gone" />
+            <ImageButton
+                android:id="@+id/btnRemoveImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:layout_gravity="top|end"
+                android:background="#80000000"
+                android:visibility="gone" />
+            </FrameLayout>
+
+        <Button
+            android:id="@+id/btnSubmitComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/holo_green_dark"
+            android:text="Submit"
+            android:textColor="#212121" />
+
+        <!-- قائمة التعليقات -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Comments:"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingTop="16dp" />
+
+        <!-- RecyclerView للتعليقات -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+</ScrollView>

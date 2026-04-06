@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_azkar"
+            android:icon="@drawable/navigation_drawer_list"
+            android:title="الأذكار" />
+        <item
+            android:id="@+id/nav_fav"
+            android:icon="@mipmap/f"
+            android:title="المفضلة" />
+
+        <item
+            android:id="@+id/nav_seit"
+            android:icon="@mipmap/set"
+            android:title="الإعدادات" />
+
+    </group>
+
+</menu>

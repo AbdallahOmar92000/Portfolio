@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/goToProfile"
+                android:background="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_account_circle_24" />
+
+            <ImageButton
+                android:id="@+id/goToMapsBtn"
+                android:background="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+
+                <EditText
+                    android:id="@+id/destination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/text_input"
+                    android:ems="10"
+                    android:hint="Enter the destination locationn"
+                    android:inputType="textPersonName"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="14dp"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/timeItTakes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/destination"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/distanceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/timeItTakes"
+                    app:layout_constraintStart_toEndOf="@+id/timeItTakes"
+                    app:layout_constraintTop_toTopOf="@+id/timeItTakes" />
+
+                <EditText
+                    android:id="@+id/origin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/text_input"
+                    android:ems="10"
+                    android:hint="Enter the origin location"
+                    android:inputType="textPersonName"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="14dp"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toTopOf="@+id/timeItTakes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/startButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/btn_gray"
+                    app:cardCornerRadius="4sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/timeItTakes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/timeItTakes">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="12dp"
+                        android:paddingHorizontal="30dp"
+                        android:paddingVertical="8dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:text="GET DISTANCE"
+                  />
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- هنا اغلقنا CardView و ConstraintLayout -->
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            tools:context=".MapsActivity" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    <?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:paddingHorizontal="20dp"-->
+<!--            android:paddingVertical="10dp"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/goToProfile"-->
+<!--                android:background="@null"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:srcCompat="@drawable/ic_baseline_account_circle_24" />-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/goToMapsBtn"-->
+<!--                android:background="@null"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24" />-->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="20dp">-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/destination"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/text_input"-->
+<!--                    android:ems="10"-->
+<!--                    android:hint="Enter the destination locationn"-->
+<!--                    android:inputType="textPersonName"-->
+<!--                    android:paddingHorizontal="20dp"-->
+<!--                    android:paddingVertical="14dp"-->
+<!--                    android:textSize="14dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/timeItTakes"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginBottom="20dp"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="16dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintBottom_toTopOf="@+id/destination"-->
+<!--                    app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/distanceTextView"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="16dp"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/timeItTakes"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/timeItTakes"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/timeItTakes" />-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/origin"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="40dp"-->
+<!--                    android:background="@drawable/text_input"-->
+<!--                    android:ems="10"-->
+<!--                    android:hint="Enter the origin location"-->
+<!--                    android:inputType="textPersonName"-->
+<!--                    android:paddingHorizontal="20dp"-->
+<!--                    android:paddingVertical="14dp"-->
+<!--                    android:textSize="14dp"-->
+<!--                    app:layout_constraintBottom_toTopOf="@+id/timeItTakes"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/startButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    app:cardBackgroundColor="@color/btn_gray"-->
+<!--                    app:cardCornerRadius="4sp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/timeItTakes"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/timeItTakes"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:textSize="12dp"-->
+<!--                        android:paddingHorizontal="30dp"-->
+<!--                        android:paddingVertical="8dp"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:text="GET DISTANCE" />-->
+<!--                </androidx.cardview.widget.CardView>-->
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--            xmlns:tools="http://schemas.android.com/tools"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:id="@+id/map"-->
+<!--            tools:context=".MapsActivity"-->
+<!--            android:name="com.google.android.gms.maps.SupportMapFragment" />-->
+<!--    </LinearLayout>-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

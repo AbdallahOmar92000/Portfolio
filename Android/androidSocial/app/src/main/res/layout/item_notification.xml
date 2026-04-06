@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardNotification"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <!-- صورة المستخدم المرسل -->
+        <ImageView
+            android:id="@+id/imgFromUser"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_marginEnd="12dp"/>
+
+        <!-- نص الإشعار الرئيسي -->
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/imgFromUser"
+            android:layout_alignTop="@id/imgFromUser"
+            android:text="User liked your post"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginEnd="32dp"
+            android:ellipsize="end"
+            android:maxLines="2"/>
+
+        <!-- نص الوقت -->
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvMessage"
+            android:layout_toEndOf="@id/imgFromUser"
+            android:text="2 hours ago"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"/>
+
+        <!-- زر حذف الإشعار -->
+        <ImageButton
+            android:id="@+id/btnDeleteNotification"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="Delete Notification"
+            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:id="@+id/cardNotification"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_margin="8dp"-->
+<!--    app:cardElevation="4dp"-->
+<!--    app:cardCornerRadius="8dp">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="12dp">-->
+
+<!--        &lt;!&ndash; صورة المستخدم المرسل &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/imgFromUser"-->
+<!--            android:layout_width="48dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:layout_gravity="start"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:src="@drawable/ic_launcher_background"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            />-->
+
+<!--        &lt;!&ndash; النص الرئيسي للإشعار &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/tvMessage"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Notification message"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:layout_marginBottom="4dp"/>-->
+
+<!--        &lt;!&ndash; نص إضافي للوقت &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/tvDate"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="2 hours ago"-->
+<!--            android:textSize="12sp"-->
+<!--            android:textColor="@android:color/darker_gray"/>-->
+
+<!--    </LinearLayout>-->
+
+<!--</androidx.cardview.widget.CardView>-->

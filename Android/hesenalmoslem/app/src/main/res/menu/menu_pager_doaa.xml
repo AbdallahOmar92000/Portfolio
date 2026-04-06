@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.letter.sarrawi.myapplication.PagerDoaa">
+    <item android:id="@+id/action_share" android:title="مشاركة"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/action_copy" android:title="نسخ"
+        android:orderInCategory="100" app:showAsAction="never" />
+</menu>

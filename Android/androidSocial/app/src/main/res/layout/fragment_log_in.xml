@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/signin_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- عنوان الشاشة -->
+        <TextView
+            android:id="@+id/signin_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- شرح للتسجيل أو تسجيل الدخول -->
+        <TextView
+            android:id="@+id/signup_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? Sign up first."
+            android:layout_marginBottom="24dp"
+            android:textColor="@android:color/holo_blue_dark"/>
+
+<!--        &lt;!&ndash; تسجيل الدخول عبر الشبكات الاجتماعية (رمزي فقط) &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginBottom="16dp">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_google_login"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Google" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_facebook_login"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Facebook"-->
+<!--                android:layout_marginStart="12dp" />-->
+<!--        </LinearLayout>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="— or —"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:textStyle="italic" />-->
+
+        <!-- حقول الإدخال -->
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:minHeight="48dp" />
+
+        <!-- رابط نسيت كلمة المرور -->
+        <TextView
+            android:id="@+id/forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="end" />
+
+        <!-- زر تسجيل الدخول -->
+        <Button
+            android:id="@+id/btn_signin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@android:color/black"
+            android:textColor="@android:color/white" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="16dp" />
+
+
+    </LinearLayout>
+</ScrollView>

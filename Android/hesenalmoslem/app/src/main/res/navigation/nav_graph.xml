@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/firsFragment"
+        android:name="com.mymuslem.sarrawi.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+
+        <action
+            android:id="@+id/action_firsFragment_to_fragmentViewPager"
+            app:destination="@id/fragmentViewPager" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.mymuslem.sarrawi.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_FirstFragment"
+            app:destination="@id/firsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.mymuslem.sarrawi.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/fragmentViewPager"
+        android:name="com.mymuslem.sarrawi.FragmentViewPager"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" >
+        <argument
+            android:name="typeID"
+            app:argType="integer" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.mymuslem.sarrawi.SecondFragment"
+        android:label="SecondFragment"
+        tools:layout="@layout/fragment_second">
+        <action
+            android:id="@+id/action_secondFragment_to_fragmentViewPager"
+            app:destination="@id/fragmentViewPager" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSetting"
+        android:name="com.mymuslem.sarrawi.FragmentSetting"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_fragmentSetting_to_firsFragment"
+            app:destination="@id/firsFragment" />
+    </fragment>
+</navigation>

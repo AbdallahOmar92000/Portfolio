@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/firsFragment"
+        android:title="الرئيسية"
+        android:icon="@drawable/_m" />
+
+    <item
+        android:id="@+id/secondFragment"
+        android:icon="@drawable/favorite"
+        android:title="المفصلة" />
+
+    <item
+        android:id="@+id/fragmentSetting"
+        android:icon="@drawable/settings"
+        android:title="الاعدادات" />
+
+
+</menu>

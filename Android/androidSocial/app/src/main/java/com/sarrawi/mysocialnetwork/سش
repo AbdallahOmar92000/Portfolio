@@ -1,0 +1,113 @@
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var toolbar: MaterialToolbar
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main) // أو أي شاشة تتضمن include لـ navbar.xml
+
+        toolbar = findViewById(R.id.topAppBar)
+
+        toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.nav_explore -> {
+                    Toast.makeText(this, "Explore", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.nav_suggestions -> {
+                    Toast.makeText(this, "Suggestions", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.action_notifications -> {
+                    Toast.makeText(this, "Notifications", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.action_messages -> {
+                    Toast.makeText(this, "Inbox", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.action_account -> {
+                    showAccountDropdown(findViewById(item.itemId))
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun showAccountDropdown(anchor: View) {
+        val popup = PopupMenu(this, anchor)
+        popup.menuInflater.inflate(R.menu.account_dropdown_menu, popup.menu)
+        popup.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_profile -> {
+                    Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.menu_logout -> {
+                    Toast.makeText(this, "Logging out", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
+        }
+        popup.show()
+    }
+}
+
+
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var toolbar: MaterialToolbar
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main) // تأكد أنه يحتوي include لل navbar.xml
+
+        toolbar = findViewById(R.id.topAppBar)
+
+        toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.action_user -> {
+                    showUserBottomSheet()
+                    true
+                }
+                R.id.action_notifications -> {
+                    // تنفيذ إشعارات
+                    true
+                }
+                R.id.action_messages -> {
+                    // تنفيذ الرسائل
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun showUserBottomSheet() {
+        val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_user_menu, null)
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(bottomSheetView)
+
+        val bottomNav = bottomSheetView.findViewById<BottomNavigationView>(R.id.bottom_navigation_user_menu)
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_profile -> {
+                    Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
+                    bottomSheetDialog.dismiss()
+                    true
+                }
+                R.id.nav_logout -> {
+                    Toast.makeText(this, "Logout clicked", Toast.LENGTH_SHORT).show()
+                    bottomSheetDialog.dismiss()
+                    true
+                }
+                else -> false
+            }
+        }
+
+        bottomSheetDialog.show()
+    }
+}

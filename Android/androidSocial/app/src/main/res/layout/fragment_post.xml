@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- نموذج كتابة منشور -->
+    <TextView
+        android:text="Add a Post!"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/etPostBody"
+        android:hint="Say something..."
+        android:minLines="3"
+        android:gravity="top"
+        android:background="@android:drawable/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnSelectImage"
+        android:text="Upload Image"
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+<!--    <FrameLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--    <ImageView-->
+<!--        android:id="@+id/imagePreview"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:visibility="gone" />-->
+<!--    <ImageButton-->
+<!--        android:id="@+id/btnRemoveImage"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@android:drawable/ic_menu_close_clear_cancel"-->
+<!--        android:layout_gravity="top|end"-->
+<!--        android:background="#80000000"-->
+<!--        android:visibility="gone" />-->
+<!--    </FrameLayout>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSelectedImagesPreview"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    <Button
+        android:id="@+id/btnSubmitPost"
+        android:text="Submit!"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="Posts"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- ✅ RecyclerView لعرض المنشورات -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/postsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>
+
+    <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:padding="16dp">-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/postsContainer"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        &lt;!&ndash; ✅ 1. نموذج كتابة منشور &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:text="Add a Post!"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/etPostBody"-->
+<!--            android:hint="Say something..."-->
+<!--            android:minLines="3"-->
+<!--            android:gravity="top"-->
+<!--            android:background="@android:drawable/edit_text"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnSelectImage"-->
+<!--            android:text="Upload Image"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imagePreview"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:visibility="gone" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnSubmitPost"-->
+<!--            android:text="Submit!"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="#CCCCCC"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="16dp" />-->
+
+<!--        &lt;!&ndash; ✅ 2. قائمة المنشورات (ستُضاف ديناميكيًا) &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:text="Posts"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="18sp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--        &lt;!&ndash; يمكن ملؤها ديناميكيًا عبر RecyclerView &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/postsList"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+
+<!--    </LinearLayout>-->
+<!--</ScrollView>-->

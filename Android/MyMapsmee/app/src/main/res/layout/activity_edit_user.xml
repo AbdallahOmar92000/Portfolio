@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".EditUserActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp"
+        android:text="Name" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter your name"
+        android:paddingHorizontal="20dp"
+        android:textSize="14dp"
+        android:paddingVertical="14dp"
+        android:ems="10"
+        android:background="@drawable/text_input"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:text="Email" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter your email"
+        android:paddingHorizontal="20dp"
+        android:textSize="14dp"
+        android:paddingVertical="14dp"
+        android:ems="10"
+        android:background="@drawable/text_input"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:text="Username" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter your username"
+        android:paddingHorizontal="20dp"
+        android:textSize="14dp"
+        android:paddingVertical="14dp"
+        android:ems="10"
+        android:background="@drawable/text_input"
+        android:inputType="textPersonName"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:text="Language" />
+
+    <EditText
+        android:id="@+id/language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter your language"
+        android:paddingHorizontal="20dp"
+        android:textSize="14dp"
+        android:paddingVertical="14dp"
+        android:ems="10"
+        android:background="@drawable/text_input"
+        android:inputType="textPersonName"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:text="Preferred Landmark" />
+
+    <EditText
+        android:id="@+id/landmark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter your preferred landmark"
+        android:paddingHorizontal="20dp"
+        android:textSize="14dp"
+        android:paddingVertical="14dp"
+        android:ems="10"
+        android:background="@drawable/text_input"
+        android:inputType="textPersonName"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnUpdateProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingHorizontal="30dp"
+                android:paddingVertical="12dp"
+                android:text="Update"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

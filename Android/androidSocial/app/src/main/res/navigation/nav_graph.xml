@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/logInFragment">
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.sarrawi.mysocialnetwork.ui.auth.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logInFragment_to_mainTabsFragment"
+            app:destination="@id/mainTabsFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.sarrawi.mysocialnetwork.ui.auth.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_mainTabsFragment"
+            app:destination="@id/mainTabsFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/mainTabsFragment"
+        android:name="com.sarrawi.mysocialnetwork.ui.social.MainTabsFragment"
+        android:label="MainTabsFragment" >
+    <action
+        android:id="@+id/action_mainFragment_to_searchFragment"
+        app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/blankFragment2"
+        android:name="com.sarrawi.mysocialnetwork.ui.social.BlankFragment"
+        android:label="BlankFragment" />
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="com.sarrawi.mysocialnetwork.ui.social.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment2_to_blankFragment2"
+            app:destination="@id/blankFragment2" />
+        <!-- الانتقال إلى قائمة المتابعين -->
+        <action
+            android:id="@+id/action_profileFragment2_to_followersFragment"
+            app:destination="@id/followersFragment" />
+
+        <!-- الانتقال إلى قائمة الذين أتابعهم -->
+        <action
+            android:id="@+id/action_profileFragment2_to_followingFragment"
+            app:destination="@id/followingFragment" />
+        <argument
+            android:name="user_id"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.sarrawi.mysocialnetwork.ui.social.SearchFragment"
+        android:label=" " />
+
+    <!-- Global Action -->
+    <action
+        android:id="@+id/action_global_searchFragment"
+        app:destination="@id/searchFragment" />
+    <fragment
+        android:id="@+id/exploreFragment2"
+        android:name="com.sarrawi.mysocialnetwork.ui.social.ExploreFragment2"
+        android:label="ExploreFragment2" >
+
+        <action
+            android:id="@+id/action_exploreFragment2_to_profileFragment2"
+            app:destination="@id/profileFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.sarrawi.mysocialnetwork.ui.social.PostFragment"
+        android:label="fragment_post"
+        tools:layout="@layout/fragment_post" >
+        <action
+            android:id="@+id/action_postFragment_to_postDetailsFragment"
+            app:destination="@id/postDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.sarrawi.mysocialnetwork.ui.social.UserProfileFragment"
+        android:label="UserProfileFragment" >
+        <argument
+            android:name="user_id"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_followingFragment"
+            app:destination="@id/followingFragment" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_followersFragment"
+            app:destination="@id/followersFragment" />
+    </fragment>
+
+    <!-- Global Action داخل الـ navigation tag -->
+    <action
+        android:id="@+id/action_global_to_userProfileFragment"
+        app:destination="@id/userProfileFragment" />
+
+    <action
+        android:id="@+id/action_global_to_profile"
+        app:destination="@id/profileFragment2" />
+    <fragment
+        android:id="@+id/suggestionsFragment"
+        android:name="com.sarrawi.mysocialnetwork.ui.social.SuggestionsFragment"
+        android:label="SuggestionsFragment" />
+    <action
+        android:id="@+id/action_global_profileFragment2"
+        app:destination="@id/profileFragment2" />
+
+    <action
+        android:id="@+id/action_global_userProfileFragment"
+        app:destination="@id/userProfileFragment" />
+    <fragment
+        android:id="@+id/followingFragment"
+        android:name="com.sarrawi.mysocialnetwork.ui.FollowingFragment"
+        android:label="FollowingFragment" >
+    <argument
+        android:name="userId"
+        app:argType="integer"
+        android:defaultValue="-1" /></fragment>
+    <fragment
+        android:id="@+id/followersFragment"
+        android:name="com.sarrawi.mysocialnetwork.ui.FollowersFragment"
+        android:label="FollowersFragment" >
+    <argument
+        android:name="userId"
+        app:argType="integer"
+        android:defaultValue="-1"
+
+        />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_postDetailsFragment"
+        app:destination="@id/postDetailsFragment" />
+
+    <fragment
+        android:id="@+id/postDetailsFragment"
+        android:name="com.sarrawi.mysocialnetwork.ui.social.PostDetailsFragment"
+        android:label="Post Details">
+
+        <argument
+            android:name="postId"
+            app:argType="integer"
+            android:defaultValue="0" />
+
+    </fragment>
+
+
+</navigation>
+
+
+
+
+
+<!--    <?xml version="1.0" encoding="utf-8"?>-->
+<!--<navigation xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--android:id="@+id/nav_graph"-->
+<!--app:startDestination="@id/mainTabsFragment">-->
+
+<!--&lt;!&ndash; Fragment الرئيسي الذي يحتوي على Tabs &ndash;&gt;-->
+<!--<fragment-->
+<!--    android:id="@+id/mainTabsFragment"-->
+<!--    android:name="com.sarrawi.mysocialnetwork.ui.MainTabsFragment"-->
+<!--    android:label="Main Tabs">-->
+
+<!--    <action-->
+<!--        android:id="@+id/action_global_profileFragment"-->
+<!--        app:destination="@id/profileFragment" />-->
+
+<!--    <action-->
+<!--        android:id="@+id/action_global_userProfileFragment"-->
+<!--        app:destination="@id/userProfileFragment" />-->
+<!--</fragment>-->
+
+<!--&lt;!&ndash; ProfileFragment للمستخدم الحالي &ndash;&gt;-->
+<!--<fragment-->
+<!--    android:id="@+id/profileFragment"-->
+<!--    android:name="com.sarrawi.mysocialnetwork.ui.social.ProfileFragment"-->
+<!--    android:label="Profile" />-->
+
+<!--&lt;!&ndash; UserProfileFragment لمستخدم آخر &ndash;&gt;-->
+<!--<fragment-->
+<!--    android:id="@+id/userProfileFragment"-->
+<!--    android:name="com.sarrawi.mysocialnetwork.ui.social.UserProfileFragment"-->
+<!--    android:label="User Profile">-->
+<!--    <argument-->
+<!--        android:name="userId"-->
+<!--        app:argType="integer" />-->
+<!--</fragment>-->
+
+<!--</navigation>-->

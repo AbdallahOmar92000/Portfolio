@@ -1,0 +1,52 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="reply_entries">
+        <item>Reply</item>
+        <item>Reply to all</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>reply</item>
+        <item>reply_all</item>
+    </string-array>
+
+<!--    <string-array name="font_sizes">-->
+<!--        <item>صغير</item>-->
+<!--        <item>متوسط</item>-->
+<!--        <item>كبير</item>-->
+<!--    </string-array>-->
+
+    <string-array name="font_size_values">
+        <item>small</item>
+        <item>medium</item>
+        <item>large</item>
+    </string-array>
+
+    <string-array name="font_styles">
+        <item>عادي</item>
+        <item>خط عريض</item>
+        <item>خط مائل</item>
+    </string-array>
+
+    <string-array name="font_style_values">
+        <item>normal</item>
+        <item>bold</item>
+        <item>italic</item>
+    </string-array>
+
+    <string-array name="font_sizes">
+        <item>0</item>
+        <item>25</item>
+        <item>50</item>
+        <item>75</item>
+        <item>100</item>
+    </string-array>
+
+        <string-array name="font_options">
+            <item>Font Option 1</item>
+            <item>Font Option 2</item>
+            <item>Font Option 3</item>
+            <!-- وأضف المزيد من الخيارات إذا لزم الأمر -->
+        </string-array>
+
+</resources>

@@ -1,0 +1,177 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FragmentSetting">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Main LinearLayout for content -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- TextView to display the SeekBar progress -->
+            <TextView
+                android:id="@+id/tvSeekBarValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center_horizontal" />
+
+            <!-- TextView for "حجم الخط:" label -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fontSize"
+                android:text="حجم الخط:" />
+
+            <!-- SeekBar to adjust font size -->
+            <SeekBar
+                android:id="@+id/fontSizeSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <ImageView
+
+                android:id="@+id/shape1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/separator"
+                android:focusable="false" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+            <!-- TextView for "نوع الخط:" label -->
+                <TextView
+                    android:id="@+id/fontTypeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="8dp"
+                    android:text="نوع الخط:" />
+
+            <!-- Spinner to select font type -->
+                <Spinner
+                    android:id="@+id/fontTypeSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/fontTypeLabel"
+                    android:contentDescription="@string/action_settings"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </RelativeLayout>
+
+
+
+            <ImageView
+
+                android:id="@+id/shape2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/separator"
+                android:focusable="false" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/nightModeSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="الوضع الليلي" />
+
+            <ImageView
+
+                android:id="@+id/shape3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/separator"
+                android:focusable="false" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/noti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="تفعيل الاشعارات" />
+
+            <ImageView
+
+                android:id="@+id/shape4"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/separator"
+                android:focusable="false" />
+
+        </LinearLayout>
+
+        <!-- You can add more views here if needed -->
+
+    </LinearLayout>
+
+</FrameLayout>
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".FragmentSetting">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--        &lt;!&ndash; res/layout/activity_settings.xml &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="16dp">-->
+<!--            <TextView-->
+<!--                android:id="@+id/tvSeekBarValue"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="0"-->
+<!--                android:textSize="16sp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_gravity="center_horizontal" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/fontSize"-->
+<!--                android:text="حجم الخط:" />-->
+
+
+<!--            <SeekBar-->
+<!--                android:id="@+id/fontSizeSeekBar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="نوع الخط:"-->
+<!--                />-->
+
+<!--            <Spinner-->
+<!--                android:id="@+id/fontTypeSpinner"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:contentDescription="@string/action_settings"-->
+<!--                tools:ignore="TouchTargetSizeCheck" />-->
+
+<!--        </LinearLayout>-->
+<!--        -->
+
+<!--    </LinearLayout>-->
+
+<!--</FrameLayout>-->

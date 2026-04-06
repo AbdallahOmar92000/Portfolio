@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScreenFragment">
+
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.sarrawi.mytranslate.HistoryFragment"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/translateFragment"
+        android:name="com.sarrawi.mytranslate.TranslateFragment"
+ >
+        <action
+            android:id="@+id/action_translateFragment_to_previewFragment"
+            app:destination="@id/previewFragment" />
+
+        <argument
+            android:name="textToTranslate"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.sarrawi.mytranslate.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_translateFragment"
+            app:destination="@id/translateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/previewFragment"
+        android:name="com.sarrawi.mytranslate.PreviewFragment"
+        android:label="fragment_preview"
+        tools:layout="@layout/fragment_preview" >
+    <argument
+        android:name="imageUri"
+        app:argType="string" />
+        <action
+            android:id="@+id/action_previewFragment_to_translateFragment"
+            app:destination="@id/translateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favFragment"
+        android:name="com.sarrawi.mytranslate.FavFragment"
+        android:label="fragment_fav"
+        tools:layout="@layout/fragment_fav" />
+
+</navigation>
